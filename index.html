@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toast Notification</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- this below link we used to add icon in front of each message -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="buttons">
+  <button onclick="showToast(successMsg, 'success')">Success</button>
+  <button onclick="showToast(errorMsg, 'error')">Error</button>
+  <button onclick="showToast(invalidMsg, 'invalid')">Invalid</button>
+  </div>
+
+  <div id="toastBox"></div>
+
+  <script>
+
+    let toastBox=document.getElementById("toastBox");
+    let successMsg="Successfully submitted";
+    let errorMsg="Please fix the error";
+    let invalidMsg="Invalid input, check again";
+
+    // we add icons by using claude
+    const icons = {
+      success: 'fa-circle-check',
+      error: 'fa-circle-xmark',
+      invalid: 'fa-triangle-exclamation'
+    };
+
+    function showToast(msg, type){
+      let toast = document.createElement('div');
+      toast.classList.add('toast', type);
+      toast.innerHTML = `<i class="fa-solid ${icons[type]}"></i>${msg}`;
+      toastBox.appendChild(toast);
+
+      // we want that the div(box that we get after click on button) is disappear after some time so
+      setTimeout(()=>{
+        toast.remove();
+      },6000); // remove after 6000ms=6sec
+    }
+
+
+  </script>
+</body>
+</html>
